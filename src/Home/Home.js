@@ -1,6 +1,17 @@
 import React, { Component } from 'react';
+import Gmap from './Gmap';
 
 export default class Home extends Component {
+
+
+	renderGmap = () => {
+
+		return (
+			<Gmap
+
+			/>
+		)
+	};
 
 	render() {
 
@@ -10,6 +21,7 @@ export default class Home extends Component {
 				id={'main'}
 			>
 
+				{this.renderGmap()}
 
 			</div>
 		);
