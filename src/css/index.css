@@ -23,3 +23,110 @@ html, body {
     height: calc(100% - 50px)
 }
 
+#left-panel {
+    padding-top: 50px;
+    padding-left: 20px;
+    padding-right: 20px;
+    height: calc(100% - 50px);
+    overflow: hidden;
+    margin: 0;
+}
+
+#right-column {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    flex: 1
+}
+
+#top-panel {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 50px;
+}
+
+#map {
+    display: flex;
+    flex: 1;
+    height: calc(100% - 50px)
+}
+
+#top-left-fixed {
+    position: fixed;
+    height: 50px;
+    top: 0;
+}
+
+#list {
+
+    height: calc(100% - 70px);
+    overflow: hidden;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    margin: 0;
+}
+
+#list::-webkit-scrollbar {
+    display: none;
+}
+
+.city-case {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 0;
+    padding: 5px;
+    height: 20px;
+}
+
+#search {
+    margin-top: 0;
+    padding: 5px;
+    font-size: 14px;
+    /*border-radius: 9px;*/
+    width: 100%;
+    border: 1px solid #c9c9c9;
+
+}
+
+.cityDiv {
+    margin-right: 20px;
+}
+
+.city {
+    color: black;
+    font-weight: normal;
+    background-color: white
+}
+
+.hoveredCity {
+    color: white;
+    background-color: #c9c9c9;
+    /*opacity: 0.4;*/
+    font-weight: bold;
+}
+
+.spacefiller {
+    color: white;
+    font-weight: bold;
+    height: 0;
+    margin: 0;
+}
+
+.arrow-div {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0 10px 0;
+}
+
+.arrow-image {
+    width: 15px;
+    height: 15px;
+    padding: 0 10px 0 10px;
+}
