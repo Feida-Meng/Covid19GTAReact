@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react';
 import { GOOGLE_API_KEY } from '../Constant';
-
+import { getHeatMapColor } from '../functions/functions';
+import { cityBoundaries } from '../geoData';
+import virusIconUrl from '../../assets/images/virus.png';
 
 const gmapStyle = [
 	{
@@ -163,6 +165,14 @@ const gmapStyle = [
 	}
 ];
 
+const getVirusIconSize = cases => {
+
+	const size = cases * 0.01 + 20;
+	// console.log('size>>>>>>>>>>>>>>>>>>>>>>.', size);
+	return size;
+};
+
+
 
 export default class Gmap extends PureComponent {
 
@@ -172,9 +182,9 @@ export default class Gmap extends PureComponent {
 	}
 
 	async componentDidMount() {
-		console.log('gmap componentDidMount');
 
 		try {
+			// console.log('Gmap componentDidMount');
 			const googleMapScript = document.createElement('script');
 			googleMapScript.src = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_API_KEY}&libraries=visualization`;
 			googleMapScript.async = true;
@@ -209,11 +219,95 @@ export default class Gmap extends PureComponent {
 		gmap.mapTypes.set('Grey', styledMapType);
 		gmap.setMapTypeId('Grey');
 
+		this.createPolygonesAndMarkers(gmap);
 
 	};
 
+	createPolygonesAndMarkers = gmap => {
+
+		const polygons = {};
+		const markers = {};
+		const infowindows = {};
+
+		for (const city in cityBoundaries) {
+			if (cityBoundaries.hasOwnProperty(city)) {
+
+				infowindows[city] = new google.maps.InfoWindow({
+					content: `${city} | ${this.props?.cases?.[city]} cases`
+				});
 
 
+				if (cityBoundaries[city].latlng) {
+
+					const iconSize = getVirusIconSize(this.props?.cases?.[city]);
+
+					const icon = {
+						url: virusIconUrl, // url
+						scaledSize: new google.maps.Size(iconSize, iconSize), // scaled size
+						origin: new google.maps.Point(0, 0), // origin
+						anchor: new google.maps.Point(iconSize/2, iconSize/2) // anchor
+					};
+
+					const label = {
+						color: 'white', // <= HERE
+						fontSize: '9px',
+						fontWeight: '900',
+						text: `${this.props?.cases?.[city]}`
+					};
+
+					markers[city] = new google.maps.Marker({
+						position: cityBoundaries?.[city].latlng,
+						map: gmap,
+						// title: `${city} | ${this.props.cases[city]} cases`,
+						label,
+						icon
+					});
+
+					//for mobile
+					markers[city].addListener('click', function() {
+						infowindows[this.props.mouseHoveredCity]?.close();
+						infowindows[city].open(gmap, markers[city]);
+						this.props.setMouseHoveredCity(city, true);
+
+					});
+				}
+
+				const PolygonOpt = {
+					paths: cityBoundaries[city].boundary,
+					strokeColor: '#FF0000',
+					strokeOpacity: 0.6,
+					strokeWeight: 1,
+					fillColor: getHeatMapColor(this.props.maxCases, this.props?.cases?.[city]),
+					fillOpacity: 0.7
+				};
+
+				polygons[city] = new google.maps.Polygon(PolygonOpt);
+
+				polygons[city].setMap(gmap);
+
+				google.maps.event.addListener( polygons[city], "mouseover" ,() => {
+					this.props.setMouseHoveredCity(city, true);
+					infowindows[city].open(gmap, markers[city]);
+					polygons[city].setOptions({fillOpacity: 0.5});
+				});
+
+
+				//for mobile
+				google.maps.event.addListener( polygons[city], "click" ,() => {
+					this.props.setMouseHoveredCity(city, true);
+					infowindows[city].open(gmap, markers[city]);
+					polygons[city].setOptions({fillOpacity: 0.5});
+				});
+
+				google.maps.event.addListener(polygons[city], "mouseout", () => {
+					infowindows[city].close();
+					polygons[city].setOptions({fillOpacity: 0.7});
+				});
+			}
+		}
+
+		this.props.setMapRefs({ polygons, markers, gmap, infowindows });
+	};
 
 	render() {
 		return (

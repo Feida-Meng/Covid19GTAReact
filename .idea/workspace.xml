@@ -2,8 +2,39 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="52e90161-4a16-4e2d-add1-8c5d42c00cc9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/functions/functions.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/images/favicon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/images/virus.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/functions/functions.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/geoData/AjaxBoundary.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/geoData/AuroraBoundary.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/geoData/BramptonBoundary.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/geoData/BrockBoundary.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/geoData/BurlingtonBoundary.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/geoData/CaledonBoundary.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/geoData/ClaringtonBoundary.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/geoData/EastGwillimburyBoundary.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/geoData/GeorgetownBoundary.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/geoData/GeorginaBoundary.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/geoData/HaltonHillsBoundary.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/geoData/KingBoundary.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/geoData/MarkhamBoundary.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/geoData/MiltonBoundary.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/geoData/MississaugaBoundary.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/geoData/NewmarketBoundary.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/geoData/OakvilleBoundary.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/geoData/OshawaBoundary.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/geoData/PickeringBoundary.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/geoData/RichmondhillBoundary.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/geoData/ScugogBoundary.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/geoData/TorontoBoundary.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/geoData/UxbridgeBoundary.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/geoData/VaughanBoundary.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/geoData/WhitbyBoundary.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/geoData/WhitechurchStouffvilleBoundary.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/geoData/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functions/functions.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Home/Gmap.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Home/Gmap.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Home/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Home/Home.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -20,7 +51,8 @@
       <usages-collector id="statistics.lifecycle.project">
         <counts>
           <entry key="project.open.time.1" value="1" />
-          <entry key="project.opened" value="1" />
+          <entry key="project.open.time.10" value="1" />
+          <entry key="project.opened" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -29,7 +61,7 @@
           <entry key="css" value="2" />
           <entry key="gitignore" value="1" />
           <entry key="html" value="1" />
-          <entry key="js" value="9" />
+          <entry key="js" value="12" />
           <entry key="json" value="1" />
         </counts>
       </usages-collector>
@@ -38,14 +70,14 @@
           <entry key="CSS" value="2" />
           <entry key="HTML" value="1" />
           <entry key="JSON" value="3" />
-          <entry key="JavaScript" value="9" />
+          <entry key="JavaScript" value="12" />
           <entry key="PLAIN_TEXT" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="css" value="22" />
-          <entry key="js" value="35" />
+          <entry key="js" value="74" />
           <entry key="json" value="31" />
         </counts>
       </usages-collector>
@@ -53,18 +85,18 @@
         <counts>
           <entry key="CSS" value="22" />
           <entry key="JSON" value="31" />
-          <entry key="JavaScript" value="35" />
+          <entry key="JavaScript" value="74" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="false">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Home/Gmap.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="211" lean-forward="true" selection-start-line="211" selection-end-line="211" />
+            <state relative-caret-position="455">
+              <caret line="311" column="14" lean-forward="true" selection-start-line="311" selection-start-column="14" selection-end-line="311" selection-end-column="14" />
               <folding>
                 <element signature="e#0#45#0" expanded="true" />
               </folding>
@@ -76,7 +108,7 @@
         <entry file="file://$PROJECT_DIR$/src/Constant.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="90">
-              <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+              <caret line="5" selection-start-line="5" selection-end-line="5" />
             </state>
           </provider>
         </entry>
@@ -84,7 +116,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/App.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="54">
+            <state relative-caret-position="36">
               <caret line="3" column="19" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
@@ -96,8 +128,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Home/Home.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-486">
-              <caret line="9" column="40" lean-forward="true" selection-start-line="9" selection-start-column="40" selection-end-line="9" selection-end-column="40" />
+            <state relative-caret-position="1278">
+              <caret line="75" selection-start-line="75" selection-end-line="75" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -105,11 +137,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/functions/functions.js">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/functions/functions.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+            <state relative-caret-position="342">
+              <caret line="19" column="26" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/geoData/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="36">
+              <caret line="26" column="29" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
+              <folding>
+                <element signature="e#0#60#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -117,8 +161,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/css/index.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="14" column="18" lean-forward="true" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
+            <state relative-caret-position="252">
+              <caret line="14" column="18" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -134,10 +178,11 @@
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/src/Home.js" />
         <option value="$PROJECT_DIR$/src/Constant.js" />
-        <option value="$PROJECT_DIR$/src/Home/Gmap.js" />
         <option value="$PROJECT_DIR$/src/css/index.css" />
-        <option value="$PROJECT_DIR$/src/Home/Home.js" />
         <option value="$PROJECT_DIR$/functions/functions.js" />
+        <option value="$PROJECT_DIR$/src/functions/functions.js" />
+        <option value="$PROJECT_DIR$/src/Home/Home.js" />
+        <option value="$PROJECT_DIR$/src/Home/Gmap.js" />
       </list>
     </option>
   </component>
@@ -156,9 +201,9 @@
     </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="543" />
+    <option name="x" value="67" />
     <option name="y" value="32" />
-    <option name="width" value="1377" />
+    <option name="width" value="927" />
     <option name="height" value="1048" />
   </component>
   <component name="ProjectView">
@@ -176,24 +221,18 @@
             <path>
               <item name="Covid19React1" type="b2602c69:ProjectViewProjectNode" />
               <item name="Covid19React1" type="462c0819:PsiDirectoryNode" />
-              <item name="functions" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Covid19React1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Covid19React1" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+              <item name="images" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Covid19React1" type="b2602c69:ProjectViewProjectNode" />
               <item name="Covid19React1" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Covid19React1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Covid19React1" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Covid19React1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Covid19React1" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Home" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -213,6 +252,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$/src/Home" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
@@ -243,17 +283,18 @@
       <option name="presentableId" value="Default" />
       <updated>1588119150923</updated>
       <workItem from="1588119152399" duration="1730000" />
+      <workItem from="1588200656355" duration="1008000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4445000" />
+    <option name="totallyTimeSpent" value="7454000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="32" width="1853" height="1048" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14691152" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2031163" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Project Explorer" order="2" />
       <window_info id="DB Browser" order="3" />
@@ -270,7 +311,7 @@
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="DB Execution Console" order="9" />
       <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.20735785" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.1638796" />
       <window_info anchor="bottom" id="Event Log" order="12" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="13" show_stripe_button="false" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -317,37 +358,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/App.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="3" column="19" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
           <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
-          <folding>
-            <element signature="e#33#57#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/css/index.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="14" column="18" lean-forward="true" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/src/geoData/AjaxBoundary.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/geoData/AuroraBoundary.js">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Home/Gmap.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="211" lean-forward="true" selection-start-line="211" selection-end-line="211" />
+        <state relative-caret-position="455">
+          <caret line="311" column="14" lean-forward="true" selection-start-line="311" selection-start-column="14" selection-end-line="311" selection-end-column="14" />
           <folding>
             <element signature="e#0#45#0" expanded="true" />
           </folding>
@@ -357,24 +384,51 @@
     <entry file="file://$PROJECT_DIR$/src/Constant.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
-          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="3" column="19" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Home/Home.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-486">
-          <caret line="9" column="40" lean-forward="true" selection-start-line="9" selection-start-column="40" selection-end-line="9" selection-end-column="40" />
+        <state relative-caret-position="1278">
+          <caret line="75" selection-start-line="75" selection-end-line="75" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/functions/functions.js">
+    <entry file="file://$PROJECT_DIR$/src/functions/functions.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+        <state relative-caret-position="342">
+          <caret line="19" column="26" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/geoData/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="26" column="29" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
+          <folding>
+            <element signature="e#0#60#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/css/index.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="14" column="18" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
         </state>
       </provider>
     </entry>
