@@ -4,6 +4,7 @@ import axios from "axios";
 import { getDateString } from "../functions/functions";
 import { baseUrl } from '../Constant';
 import { LeftPanel } from './leftPanel';
+import { TopPanel } from "./TopPanel";
 
 export default class Home extends Component {
 
@@ -18,9 +19,13 @@ export default class Home extends Component {
 			mouseHoveredCity: '',
 			polygons: null,
 			markers: null,
+			searchKey: '',
+			matchedCityList: null,
 			selectedDate:'',
+			playStatus: 'play',
 			windowSize: null,
-
+			playing: 0, // 0.not started 1.playing 2.pause
+			currentIndex: 0
 		}
 
 	}
@@ -195,6 +200,56 @@ export default class Home extends Component {
 	};
 
 
+	onDateSelected = (selectedDate, callback) => {
+		// console.log('selectedDate', selectedDate );
+
+		this.setState({ selectedDate, changingDate: true }, () => {
+
+			callback?.();
+
+			if (this.state.mouseHoveredCity && !this.state.searchKey) {
+				this.scrollToCity(this.state.mouseHoveredCity);
+				this.state.infowindows?.[this.state.mouseHoveredCity]?.open(this.state.gmap, this.state.markers[this.state.mouseHoveredCity]);
+			}
+
+			setTimeout(() => this.setState({ changingDate: false }), 100);
+
+		});
+	};
+
+	onPlayBtn = () => {
+
+		if (!this.state.playing || this.state.playing === 2 ) {
+
+			this.setState({ playing: 1, searchKey: '' }, this.onPlay);
+
+		}  else if (this.state.playing === 1) {
+			this.setState({ playing: 2 });
+		}
+	};
+
+	onPlay = () => {
+
+		// console.log('onPlay startIndex', this.state.currentIndex);
+
+		// console.log('this.state.historyCases.length', this.state.historyCases.length);
+
+		if (this.state.currentIndex >= this.state.historyCases.length) {
+			this.setState({ playing: 0, currentIndex: 0 });
+
+		} else if (this.state.playing === 1) {
+			// console.log('onPlay startIndex', this.state.historyCases[this.state.currentIndex].date);
+
+			this.onDateSelected(this.state.historyCases[this.state.currentIndex].date, () => {
+				this.setState({ currentIndex: this.state.currentIndex + 1 }, () => setTimeout(() => this.onPlay(), 1000));
+
+			});
+
+		}
+
+	};
+
+
 	render() {
 
 		return (
@@ -204,9 +259,18 @@ export default class Home extends Component {
 			>
 				{this.renderLeftPanel()}
 
+				<div id={'right-column'}>
 
-				{this.renderGmap()}
+					<TopPanel
+						currentDate={this.state.selectedDate}
+						onPlayBtn={this.onPlayBtn}
+						changingDate={this.state.changingDate}
+						playing={this.state.playing}
+					/>
 
+					{this.renderGmap()}
+
+				</div>
 			</div>
 		);
 	}
