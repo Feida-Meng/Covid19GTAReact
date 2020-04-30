@@ -39,6 +39,9 @@ export default class Home extends Component {
 			window.addEventListener("resize", this.onResize);
 			await this.getTheLatestCases();
 
+			this.getAllCasesInHistory();
+
+
 		} catch (e) {
 
 			console.log('componentDidMount',e);
@@ -101,6 +104,40 @@ export default class Home extends Component {
 	};
 
 
+	getAllCasesInHistory = async () => {
+
+		const allCasesInHistory = await axios({ method: 'get', url: `${baseUrl}/covid19/history` });
+
+		// console.log('allCasesInHistory', allCasesInHistory);
+
+		const historyCases = [];
+		const orderedDateList = {};
+
+		allCasesInHistory?.data?.data?.data?.forEach( (date,index) => {
+
+			const orderedCities = [];
+			const cases = { };
+
+			date?.data?.forEach( city => {
+				cases[city.cityAndRegion] = city.cases;
+				orderedCities.push({ city: city.cityAndRegion, cases: city.cases });
+			});
+
+
+			const selectedDate = getDateString(date._id);
+
+			historyCases[index] = {};
+			orderedDateList[selectedDate] = index;
+			historyCases[index].cases = cases;
+			historyCases[index].orderedCities = orderedCities;
+			historyCases[index].date = selectedDate;
+
+		});
+
+
+		this.setState({ historyCases, orderedDateList });
+
+	};
 
 
 	setMouseHoveredCity = (mouseHoveredCity, isOverMap) => {
