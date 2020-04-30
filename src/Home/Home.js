@@ -5,6 +5,7 @@ import { getDateString } from "../functions/functions";
 import {baseUrl, cityColorCode} from '../Constant';
 import { LeftPanel } from './leftPanel';
 import { TopPanel } from "./TopPanel";
+import LineChart from "./LineChart";
 
 export default class Home extends Component {
 
@@ -320,6 +321,19 @@ export default class Home extends Component {
 	};
 
 
+	renderChart = () => {
+		if (this.state.windowWidth && this.state.windowWidth > 500 && this.state.chartLabels && this.state.chartDatasets) {
+			return (
+				<LineChart
+					windowWidth={this.state.windowWidth}
+					windowHeight={this.state.windowHeight}
+					labels={this.state.chartLabels}
+					datasets={this.state.chartDatasets}
+				/>
+			);
+		}
+	};
+
 
 	render() {
 
@@ -341,6 +355,7 @@ export default class Home extends Component {
 
 					{this.renderGmap()}
 
+					{this.renderChart()}
 
 				</div>
 			</div>
