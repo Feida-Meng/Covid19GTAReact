@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Gmap from './Gmap';
 import axios from "axios";
 import { getDateString } from "../functions/functions";
-import { baseUrl } from '../Constant';
+import {baseUrl, cityColorCode} from '../Constant';
 import { LeftPanel } from './leftPanel';
 import { TopPanel } from "./TopPanel";
 
@@ -69,7 +69,6 @@ export default class Home extends Component {
 
 		const cityCases = await axios({ method: 'get', url: `${baseUrl}/covid19` });
 
-		console.log('cityCases',cityCases);
 
 		const historyCases = [];
 		const orderedDateList = {};
@@ -135,8 +134,42 @@ export default class Home extends Component {
 		});
 
 
-		this.setState({ historyCases, orderedDateList });
+		this.setState({ historyCases, orderedDateList }, this.formatDataForChart);
 
+	};
+
+	formatDataForChart = async () => {
+
+		const chartDatasets = [];
+
+		const results = await axios({ method: 'get', url: `${baseUrl}/covid19/chartdata` });
+		// console.log('results',results);
+
+		const chartLabels = [];
+
+		this.state.historyCases?.forEach( item => {
+			if (item.date && item.date !== '2020 Apr,21') {
+				chartLabels.push(item.date);
+			}
+		});
+		// console.log('chartLabels', chartLabels);
+
+		results?.data?.data?.data?.forEach( (city, index) => {
+			chartDatasets[index] = {
+				label: city._id,
+				fill: false,
+				lineTension: 0.5,
+				backgroundColor: cityColorCode[index],
+				borderColor: cityColorCode[index],
+				data: city?.data
+			}
+		});
+
+
+		// console.log('chartDatasets', chartDatasets);
+
+
+		this.setState({ chartLabels, chartDatasets });
 	};
 
 
@@ -287,6 +320,7 @@ export default class Home extends Component {
 	};
 
 
+
 	render() {
 
 		return (
@@ -306,6 +340,7 @@ export default class Home extends Component {
 					/>
 
 					{this.renderGmap()}
+
 
 				</div>
 			</div>

@@ -172,8 +172,6 @@ const getVirusIconSize = cases => {
 	return size;
 };
 
-
-
 export default class Gmap extends PureComponent {
 
 
@@ -201,6 +199,12 @@ export default class Gmap extends PureComponent {
 
 	}
 
+	componentDidUpdate(prevProps) {
+
+		if (prevProps.selectedDate && (prevProps.selectedDate !== this.props.selectedDate)) {
+			this.setPolygonsAndMarkers();
+		}
+	}
 
 	createGmap = () => {
 
@@ -233,13 +237,13 @@ export default class Gmap extends PureComponent {
 			if (cityBoundaries.hasOwnProperty(city)) {
 
 				infowindows[city] = new google.maps.InfoWindow({
-					content: `${city} | ${this.props?.cases?.[city]} cases`
+					content: `${city} | ${this.props.cases[city]} cases`
 				});
 
 
 				if (cityBoundaries[city].latlng) {
 
-					const iconSize = getVirusIconSize(this.props?.cases?.[city]);
+					const iconSize = getVirusIconSize(this.props.cases[city]);
 
 					const icon = {
 						url: virusIconUrl, // url
@@ -252,11 +256,11 @@ export default class Gmap extends PureComponent {
 						color: 'white', // <= HERE
 						fontSize: '9px',
 						fontWeight: '900',
-						text: `${this.props?.cases?.[city]}`
+						text: `${this.props.cases[city]}`
 					};
 
 					markers[city] = new google.maps.Marker({
-						position: cityBoundaries?.[city].latlng,
+						position: cityBoundaries[city].latlng,
 						map: gmap,
 						// title: `${city} | ${this.props.cases[city]} cases`,
 						label,
@@ -277,7 +281,7 @@ export default class Gmap extends PureComponent {
 					strokeColor: '#FF0000',
 					strokeOpacity: 0.6,
 					strokeWeight: 1,
-					fillColor: getHeatMapColor(this.props.maxCases, this.props?.cases?.[city]),
+					fillColor: getHeatMapColor(this.props.maxCases, this.props.cases[city]),
 					fillOpacity: 0.7
 				};
 
@@ -308,6 +312,61 @@ export default class Gmap extends PureComponent {
 
 		this.props.setMapRefs({ polygons, markers, gmap, infowindows });
 	};
+
+
+	setPolygonsAndMarkers = () => {
+
+		// console.log('setPolygonsAndMarkers>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>');
+
+		const { polygons, markers, infowindows } = this.props.getPolygonsAndMarkers;
+		// console.log('this.props.getPolygonsAndMarkers>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', this.props.getPolygonsAndMarkers);
+
+		for (const city in cityBoundaries) {
+			if (cityBoundaries.hasOwnProperty(city)) {
+				// console.log('infowindows>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', infowindows);
+				const cases = `${this.props.cases[city] || this.props.cases[city] === 0 ? this.props.cases[city] : 'NA'}`;
+
+				infowindows?.[city]?.setContent(`${city} | ${cases}`);
+
+				const polygonOpt = {
+					fillColor: getHeatMapColor(this.props.maxCases, cases),
+					fillOpacity: 0.7
+				};
+
+
+				polygons?.[city]?.setOptions(polygonOpt);
+
+
+				if (cityBoundaries?.[city].latlng) {
+
+					const iconSize = getVirusIconSize(cases);
+
+					const icon = {
+						url: virusIconUrl, // url
+						scaledSize: new google.maps.Size(iconSize, iconSize), // scaled size
+						origin: new google.maps.Point(0, 0), // origin
+						anchor: new google.maps.Point(iconSize/2, iconSize/2) // anchor
+					};
+
+					const label = {
+						color: 'white', // <= HERE
+						fontSize: '9px',
+						fontWeight: '900',
+						text: `${cases}`
+					};
+
+					markers[city].setOptions({
+						// position: cityBoundaries[city].latlng,
+						// map: gmap,
+						title: `${city} | ${cases}`,
+						label,
+						icon
+					});
+				}
+			}
+		}
+	};
+
 
 	render() {
 		return (
