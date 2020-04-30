@@ -130,3 +130,16 @@ html, body {
     height: 15px;
     padding: 0 10px 0 10px;
 }
+
+.chart {
+
+    /*bottom: 10px;*/
+    /*left: 277px;*/
+    padding: 10px;
+    background-color: white;
+}
+
+.opened-chart canvas {
+    width: 100% !important;
+    height: 100% !important;
+}
