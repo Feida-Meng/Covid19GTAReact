@@ -165,12 +165,8 @@ const gmapStyle = [
 	}
 ];
 
-const getVirusIconSize = cases => {
 
-	const size = cases * 0.01 + 20;
-	// console.log('size>>>>>>>>>>>>>>>>>>>>>>.', size);
-	return size;
-};
+
 
 export default class Gmap extends PureComponent {
 
@@ -227,6 +223,25 @@ export default class Gmap extends PureComponent {
 
 	};
 
+	getInfoWindowText = (city, cityCases) => {
+		const cases = `${cityCases || cityCases === 0 ? cityCases + ' cases' : 'NA'}`;
+		return `${city} | ${cases}`;
+	};
+
+	getMarkerLabelText = cases => {
+		return `${cases || cases === 0 ? cases : 'NA'}`;
+	};
+
+	getVirusIconSize = cases => {
+		if (isNaN(cases)) {
+			cases = 99;
+		}
+
+		const size = cases * 0.01 + 20;
+		// console.log('size>>>>>>>>>>>>>>>>>>>>>>.', size);
+		return size;
+	};
+
 	createPolygonesAndMarkers = gmap => {
 
 		const polygons = {};
@@ -236,14 +251,15 @@ export default class Gmap extends PureComponent {
 		for (const city in cityBoundaries) {
 			if (cityBoundaries.hasOwnProperty(city)) {
 
+
 				infowindows[city] = new google.maps.InfoWindow({
-					content: `${city} | ${this.props.cases[city]} cases`
+					content: this.getInfoWindowText(city, this.props.cases[city])
 				});
 
 
 				if (cityBoundaries[city].latlng) {
 
-					const iconSize = getVirusIconSize(this.props.cases[city]);
+					const iconSize = this.getVirusIconSize(this.props.cases[city]);
 
 					const icon = {
 						url: virusIconUrl, // url
@@ -256,7 +272,7 @@ export default class Gmap extends PureComponent {
 						color: 'white', // <= HERE
 						fontSize: '9px',
 						fontWeight: '900',
-						text: `${this.props.cases[city]}`
+						text: this.getMarkerLabelText(this.props.cases[city])
 					};
 
 					markers[city] = new google.maps.Marker({
@@ -268,8 +284,8 @@ export default class Gmap extends PureComponent {
 					});
 
 					//for mobile
-					markers[city].addListener('click', function() {
-						infowindows[this.props.mouseHoveredCity]?.close();
+					markers[city].addListener('click', () => {
+						infowindows?.[this.props.mouseHoveredCity]?.close();
 						infowindows[city].open(gmap, markers[city]);
 						this.props.setMouseHoveredCity(city, true);
 
@@ -324,12 +340,11 @@ export default class Gmap extends PureComponent {
 		for (const city in cityBoundaries) {
 			if (cityBoundaries.hasOwnProperty(city)) {
 				// console.log('infowindows>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', infowindows);
-				const cases = `${this.props.cases[city] || this.props.cases[city] === 0 ? this.props.cases[city] : 'NA'}`;
 
-				infowindows?.[city]?.setContent(`${city} | ${cases}`);
+				infowindows?.[city]?.setContent(this.getInfoWindowText(city, this.props.cases[city]));
 
 				const polygonOpt = {
-					fillColor: getHeatMapColor(this.props.maxCases, cases),
+					fillColor: getHeatMapColor(this.props.maxCases, this.props.cases[city]),
 					fillOpacity: 0.7
 				};
 
@@ -339,7 +354,7 @@ export default class Gmap extends PureComponent {
 
 				if (cityBoundaries?.[city].latlng) {
 
-					const iconSize = getVirusIconSize(cases);
+					const iconSize = this.getVirusIconSize(this.props.cases[city]);
 
 					const icon = {
 						url: virusIconUrl, // url
@@ -352,13 +367,13 @@ export default class Gmap extends PureComponent {
 						color: 'white', // <= HERE
 						fontSize: '9px',
 						fontWeight: '900',
-						text: `${cases}`
+						text: this.getMarkerLabelText(this.props.cases[city])
 					};
 
 					markers[city].setOptions({
 						// position: cityBoundaries[city].latlng,
 						// map: gmap,
-						title: `${city} | ${cases}`,
+						// title: `${city} | ${cases}`,
 						label,
 						icon
 					});
