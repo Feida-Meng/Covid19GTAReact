@@ -268,8 +268,8 @@ export default class Gmap extends PureComponent {
 					});
 
 					//for mobile
-					markers[city].addListener('click', function() {
-						infowindows[this.props.mouseHoveredCity]?.close();
+					markers[city].addListener('click', () => {
+						infowindows?.[this.props.mouseHoveredCity]?.close();
 						infowindows[city].open(gmap, markers[city]);
 						this.props.setMouseHoveredCity(city, true);
 
