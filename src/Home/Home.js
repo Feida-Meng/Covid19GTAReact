@@ -32,7 +32,6 @@ export default class Home extends Component {
 	}
 
 	async componentDidMount() {
-		console.log('componentDidMount');
 
 		try {
 
