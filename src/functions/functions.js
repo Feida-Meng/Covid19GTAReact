@@ -15,10 +15,11 @@ const colors = ['#FFFFFF','#f9c501','#fb9801','#c3723e','#eb3002','#9a0300', '#5
 export const getHeatMapColor = (max, num) => {
 
 	let color;
-	if (num === 'NA') {
-		color = colors[7];
-	} else if (num === 0) {
+
+	if (num === 0) {
 		color = colors[0];
+	} else if (!num || num === 'NA') {
+		color = colors[7];
 	} else if (num < 100) {
 		color = colors[1];
 	} else if (num < 200) {
