@@ -6,10 +6,28 @@ export const TopPanel = props => {
 		<div id={'top-panel'}>
 			<div>Confirmed cases in GTA</div>
 
-			<div style={{ backgroundColor: props.changingDate ? '#c9c9c9' : 'white', padding: 5, color: props.changingDate ? 'white' : 'black' }}>{props.currentDate}</div>
+			<div
+				style={{
+					backgroundColor: props.changingDate ? '#c9c9c9' : 'white',
+					padding: 5,
+					color: props.changingDate ? 'white' : 'black',
+					cursor:'pointer'
+				}}
+				onClick={props.toggleCalender}
+			>{props.currentDate}</div>
 
-			<button style={{ backgroundColor: '#c73e3a', color: 'white', padding: 5, borderRadius: 7, borderWidth: 1 }} onClick={props.onPlayBtn}>{props.playing === 0 ? 'Play' : (props.playing === 1 ? 'Pause' : 'Continue')}</button>
+			<button style={styles.playBtn} onClick={props.onPlayBtn}>{props.playing === 0 ? 'Play' : (props.playing === 1 ? 'Pause' : 'Continue')}</button>
 
 		</div>
 	);
+};
+
+const styles = {
+	playBtn: {
+		backgroundColor: '#c73e3a',
+		color: 'white',
+		padding: 5,
+		borderRadius: 7,
+		borderWidth: 1
+	}
 };

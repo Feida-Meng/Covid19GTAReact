@@ -143,3 +143,36 @@ html, body {
     width: 100% !important;
     height: 100% !important;
 }
+
+.calender {
+    border-width: 0;
+    background-color: white;
+    align-items: center;
+    justify-content: center;
+}
+
+.calender button {
+    background-color: white;
+    border-width: 0;
+
+}
+
+.calender-tile {
+    border-width: 0;
+    background-color: white;
+    align-items: center;
+}
+
+.react-calendar__month-view__weekdays__weekday {
+    display: flex;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    align-items: center;
+    justify-content: center;
+    border-width: 0;
+}
+
+abbr {
+    border-width: 0;
+
+}

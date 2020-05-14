@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import Gmap from './Gmap';
+import Calendar from 'react-calendar';
 import axios from "axios";
+
+import Gmap from './Gmap';
 import { getDateString } from "../functions/functions";
 import {baseUrl, cityColorCode} from '../Constant';
 import { LeftPanel } from './leftPanel';
@@ -26,7 +28,8 @@ export default class Home extends Component {
 			playStatus: 'play',
 			windowSize: null,
 			playing: 0, // 0.not started 1.playing 2.pause
-			currentIndex: 0
+			currentIndex: 0,
+			calenderOn: false
 		}
 
 	}
@@ -63,6 +66,10 @@ export default class Home extends Component {
 		}
 
 		this.setState({ windowWidth: (window?.innerWidth || 0), windowHeight: (window?.innerHeight || 0) });
+	};
+
+	toggleCalender = status => {
+		this.setState({ calenderOn: status });
 	};
 
 	getTheLatestCases = async () => {
@@ -333,6 +340,20 @@ export default class Home extends Component {
 		}
 	};
 
+	renderCalender = () => {
+		if (this.state.calenderOn) {
+			return (
+				<div style={{ position: 'absolute', top: 80, padding: 20, zIndex: 300, background: 'white', width: 300, alignSelf: 'center',  alignItems: 'center'}}>
+					<Calendar
+						tileClassName={'calender-tile'}
+						className={'calender'}
+					/>
+
+				</div>
+			)
+		}
+	};
+
 
 	render() {
 
@@ -343,9 +364,13 @@ export default class Home extends Component {
 			>
 				{this.renderLeftPanel()}
 
+
 				<div id={'right-column'}>
 
+					{this.renderCalender()}
+
 					<TopPanel
+						toggleCalender={this.toggleCalender}
 						currentDate={this.state.selectedDate}
 						onPlayBtn={this.onPlayBtn}
 						changingDate={this.state.changingDate}
