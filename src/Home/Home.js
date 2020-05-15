@@ -7,6 +7,7 @@ import { getDateString } from "../functions/functions";
 import {baseUrl, cityColorCode} from '../Constant';
 import { LeftPanel } from './leftPanel';
 import { TopPanel } from "./TopPanel";
+import { Calender } from './Calender';
 import LineChart from "./LineChart";
 
 export default class Home extends Component {
@@ -132,11 +133,13 @@ export default class Home extends Component {
 
 			const selectedDate = getDateString(date._id);
 
-			historyCases[index] = {};
+			historyCases[index] = {
+				cases,
+				orderedCities,
+				date: selectedDate,
+				rawDate: date._id
+			};
 			orderedDateList[selectedDate] = index;
-			historyCases[index].cases = cases;
-			historyCases[index].orderedCities = orderedCities;
-			historyCases[index].date = selectedDate;
 
 		});
 
@@ -278,7 +281,7 @@ export default class Home extends Component {
 
 
 	onDateSelected = (selectedDate, callback) => {
-		// console.log('selectedDate', selectedDate );
+		console.log('selectedDate', selectedDate );
 
 		this.setState({ selectedDate, changingDate: true }, () => {
 
@@ -340,22 +343,30 @@ export default class Home extends Component {
 		}
 	};
 
+	onDateFromCalenderClicked = date => {
+		const formattedDate = getDateString(date);
+		if (this.state.orderedDateList[formattedDate]) {
+			this.onDateSelected();
+		}
+	};
+
 	renderCalender = () => {
 		if (this.state.calenderOn) {
 			return (
-				<div style={{ position: 'absolute', top: 80, padding: 20, zIndex: 300, background: 'white', width: 300, alignSelf: 'center',  alignItems: 'center'}}>
-					<Calendar
-						tileClassName={'calender-tile'}
-						className={'calender'}
-					/>
-
-				</div>
+				<Calender
+					dates={this.state.historyCases}
+					onDateClicked={this.onDateFromCalenderClicked}
+					playStatus={this.state.playing}
+				/>
 			)
 		}
 	};
 
 
 	render() {
+
+		// console.log('historyCases', this.state.historyCases);
+		// console.log('orderedDateList',this.state.orderedDateList);
 
 		return (
 			<div
