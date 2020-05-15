@@ -70,7 +70,9 @@ export default class Home extends Component {
 	};
 
 	toggleCalender = status => {
-		this.setState({ calenderOn: status });
+		if (this.state.playing !== 1) {
+			this.setState({ calenderOn: status });
+		}
 	};
 
 	getTheLatestCases = async () => {
@@ -299,6 +301,10 @@ export default class Home extends Component {
 
 	onPlayBtn = () => {
 
+		if (this.state.calenderOn) {
+			this.setState({ calenderOn: false });
+		}
+
 		if (!this.state.playing || this.state.playing === 2 ) {
 
 			this.setState({ playing: 1, searchKey: '' }, this.onPlay);
@@ -345,8 +351,17 @@ export default class Home extends Component {
 
 	onDateFromCalenderClicked = date => {
 		const formattedDate = getDateString(date);
+
+		// console.log('formattedDate',formattedDate);
+		// console.log('orderedDateList',this.state.orderedDateList);
+		// console.log('this.state.orderedDateList[formattedDate]',this.state.orderedDateList[formattedDate]);
+
 		if (this.state.orderedDateList[formattedDate]) {
-			this.onDateSelected();
+			this.onDateSelected(formattedDate);
+
+			if (this.state.playing === 2) {
+				this.setState({ currentIndex: this.state.orderedDateList[formattedDate] })
+			}
 		}
 	};
 

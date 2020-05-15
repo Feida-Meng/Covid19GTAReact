@@ -11,7 +11,7 @@ export const TopPanel = props => {
 					backgroundColor: props.changingDate ? '#c9c9c9' : 'white',
 					padding: 5,
 					color: props.changingDate ? 'white' : 'black',
-					cursor:'pointer'
+					cursor: props.playing === 1 ? 'progress' : 'pointer'
 				}}
 				onClick={props.toggleCalender}
 			>{props.currentDate}</div>
