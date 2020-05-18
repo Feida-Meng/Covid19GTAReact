@@ -283,7 +283,7 @@ export default class Home extends Component {
 
 
 	onDateSelected = (selectedDate, callback) => {
-		console.log('selectedDate', selectedDate );
+		// console.log('selectedDate', selectedDate );
 
 		this.setState({ selectedDate, changingDate: true }, () => {
 
@@ -350,11 +350,10 @@ export default class Home extends Component {
 	};
 
 	onDateFromCalenderClicked = date => {
-		const formattedDate = getDateString(date);
 
-		// console.log('formattedDate',formattedDate);
-		// console.log('orderedDateList',this.state.orderedDateList);
-		// console.log('this.state.orderedDateList[formattedDate]',this.state.orderedDateList[formattedDate]);
+		this.toggleCalender(false);
+
+		const formattedDate = getDateString(date);
 
 		if (this.state.orderedDateList[formattedDate]) {
 			this.onDateSelected(formattedDate);
@@ -371,7 +370,6 @@ export default class Home extends Component {
 				<Calender
 					dates={this.state.historyCases}
 					onDateClicked={this.onDateFromCalenderClicked}
-					playStatus={this.state.playing}
 				/>
 			)
 		}
