@@ -370,6 +370,7 @@ export default class Home extends Component {
 				<Calender
 					dates={this.state.historyCases}
 					onDateClicked={this.onDateFromCalenderClicked}
+					currentDate={this.state?.orderedDateList?.[this.state?.selectedDate]}
 				/>
 			)
 		}
