@@ -216,6 +216,7 @@ export default class Home extends Component {
 				<Gmap
 					setMouseHoveredCity={this.setMouseHoveredCity}
 					cases={this.state.historyCases?.[this.state.orderedDateList?.[this.state.selectedDate]]?.cases}
+					yesterdayCases={this.state.orderedDateList?.[this.state.selectedDate] !== 0 ? this.state.historyCases?.[this.state.orderedDateList?.[this.state.selectedDate] - 1]?.cases : null}
 					mouseHoveredCity={this.state.mouseHoveredCity}
 					setMapRefs={this.setMapRefs}
 					getPolygonsAndMarkers={{ polygons: this.state.polygons, markers: this.state.markers, gmap: this.state.gmap, infowindows: this.state.infowindows }}

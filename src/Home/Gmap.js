@@ -223,9 +223,10 @@ export default class Gmap extends PureComponent {
 
 	};
 
-	getInfoWindowText = (city, cityCases) => {
+	getInfoWindowText = (city, cityCases, yesterdayCases) => {
+		console.log('yesterdayCases', yesterdayCases);
 		const cases = `${cityCases || cityCases === 0 ? cityCases + ' cases' : 'NA'}`;
-		return `${city} | ${cases}`;
+		return `${city} | ${cases}${(yesterdayCases && (cityCases || cityCases === 0)) ? ' (+' + (cityCases - yesterdayCases) + ')' : ''}`;
 	};
 
 	getMarkerLabelText = cases => {
@@ -253,7 +254,7 @@ export default class Gmap extends PureComponent {
 
 
 				infowindows[city] = new google.maps.InfoWindow({
-					content: this.getInfoWindowText(city, this.props.cases[city])
+					content: this.getInfoWindowText(city, this.props.cases[city], (this.props.yesterdayCases ? this.props.yesterdayCases[city] : null))
 				});
 
 
@@ -341,7 +342,7 @@ export default class Gmap extends PureComponent {
 			if (cityBoundaries.hasOwnProperty(city)) {
 				// console.log('infowindows>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', infowindows);
 
-				infowindows?.[city]?.setContent(this.getInfoWindowText(city, this.props.cases[city]));
+				infowindows?.[city]?.setContent(this.getInfoWindowText(city, this.props.cases[city], (this.props.yesterdayCases ? this.props.yesterdayCases[city] : null)));
 
 				const polygonOpt = {
 					fillColor: getHeatMapColor(this.props.maxCases, this.props.cases[city]),
