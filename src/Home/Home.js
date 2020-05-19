@@ -356,7 +356,7 @@ export default class Home extends Component {
 
 		const formattedDate = getDateString(date);
 
-		if (this.state.orderedDateList[formattedDate]) {
+		if (this.state.orderedDateList[formattedDate] || this.state.orderedDateList[formattedDate] === 0) {
 			this.onDateSelected(formattedDate);
 
 			if (this.state.playing === 2) {
