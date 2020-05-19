@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
-import Gmap from './Gmap';
+import Calendar from 'react-calendar';
 import axios from "axios";
+
+import Gmap from './Gmap';
 import { getDateString } from "../functions/functions";
 import {baseUrl, cityColorCode} from '../Constant';
 import { LeftPanel } from './leftPanel';
 import { TopPanel } from "./TopPanel";
+import { Calender } from './Calender';
 import LineChart from "./LineChart";
 
 export default class Home extends Component {
@@ -26,7 +29,8 @@ export default class Home extends Component {
 			playStatus: 'play',
 			windowSize: null,
 			playing: 0, // 0.not started 1.playing 2.pause
-			currentIndex: 0
+			currentIndex: 0,
+			calenderOn: false
 		}
 
 	}
@@ -63,6 +67,12 @@ export default class Home extends Component {
 		}
 
 		this.setState({ windowWidth: (window?.innerWidth || 0), windowHeight: (window?.innerHeight || 0) });
+	};
+
+	toggleCalender = status => {
+		if (this.state.playing !== 1) {
+			this.setState({ calenderOn: status });
+		}
 	};
 
 	getTheLatestCases = async () => {
@@ -125,11 +135,13 @@ export default class Home extends Component {
 
 			const selectedDate = getDateString(date._id);
 
-			historyCases[index] = {};
+			historyCases[index] = {
+				cases,
+				orderedCities,
+				date: selectedDate,
+				rawDate: date._id
+			};
 			orderedDateList[selectedDate] = index;
-			historyCases[index].cases = cases;
-			historyCases[index].orderedCities = orderedCities;
-			historyCases[index].date = selectedDate;
 
 		});
 
@@ -289,6 +301,10 @@ export default class Home extends Component {
 
 	onPlayBtn = () => {
 
+		if (this.state.calenderOn) {
+			this.setState({ calenderOn: false });
+		}
+
 		if (!this.state.playing || this.state.playing === 2 ) {
 
 			this.setState({ playing: 1, searchKey: '' }, this.onPlay);
@@ -333,8 +349,38 @@ export default class Home extends Component {
 		}
 	};
 
+	onDateFromCalenderClicked = date => {
+
+		this.toggleCalender(false);
+
+		const formattedDate = getDateString(date);
+
+		if (this.state.orderedDateList[formattedDate]) {
+			this.onDateSelected(formattedDate);
+
+			if (this.state.playing === 2) {
+				this.setState({ currentIndex: this.state.orderedDateList[formattedDate] })
+			}
+		}
+	};
+
+	renderCalender = () => {
+		if (this.state.calenderOn) {
+			return (
+				<Calender
+					dates={this.state.historyCases}
+					onDateClicked={this.onDateFromCalenderClicked}
+					currentDate={this.state?.orderedDateList?.[this.state?.selectedDate]}
+				/>
+			)
+		}
+	};
+
 
 	render() {
+
+		// console.log('historyCases', this.state.historyCases);
+		// console.log('orderedDateList',this.state.orderedDateList);
 
 		return (
 			<div
@@ -343,9 +389,13 @@ export default class Home extends Component {
 			>
 				{this.renderLeftPanel()}
 
+
 				<div id={'right-column'}>
 
+					{this.renderCalender()}
+
 					<TopPanel
+						toggleCalender={this.toggleCalender}
 						currentDate={this.state.selectedDate}
 						onPlayBtn={this.onPlayBtn}
 						changingDate={this.state.changingDate}

@@ -39,6 +39,7 @@
     "chart.js": "^2.9.3",
     "core-js": "^3.6.4",
     "react": "^16.13.1",
+    "react-calendar": "^3.0.1",
     "react-chartjs-2": "^2.9.0",
     "react-dom": "^16.13.1"
   }
